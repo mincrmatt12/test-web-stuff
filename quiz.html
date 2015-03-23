@@ -1,0 +1,222 @@
+<html>
+<head>
+<style>
+
+body {
+   font-family: Arial;
+}
+
+#anq1 {
+	color: green;
+}
+#anq2 {
+	color: green;
+}
+#anq3 {
+	color: green;
+}
+
+</style>
+<title></title>
+</head>
+<body>
+
+<h1> Hi! Here is the quiz </h1>
+
+<h2><b>Please put all answers in all lowercase, and without punctuation</b></h2>
+<p> and, the most general form of the answer </p>
+<p>So, instead of putting "Paper Airplane.", please put "airplane"<p>
+
+<h3>Question 1: Name the four forces of flight:</h3>
+
+<script>
+function contains(a, obj) {
+    for (var i = 0; i < a.length; i++) {
+        if (a[i] === obj) {
+            return true;
+        }
+    }
+    return false;
+}
+
+function fr(a){
+	return (a === true) ? "correct" : "wrong";
+}
+
+function ansQ1(){
+	
+	
+	p1tx = "The answers should be: either lift, drag, thrust, or gravity.<br>If an answer is repeated, it is counted as wrong";
+	//alert("i ran");
+	document.getElementById("anq1").innerHTML = p1tx;
+}
+
+function validateQ1() {
+	//alert("hi");
+	var formy = document.forms["q1"];
+	
+	var possible = ["drag", "lift", "gravity", "thrust"];
+	var used = [];
+	
+	var f1 = formy["q1f1"].value;
+	var f2 = formy["q1f2"].value;
+	var f3 = formy["q1f3"].value;
+	var f4 = formy["q1f4"].value;
+	
+	var n = 1;
+	//alert("hi " + f1 + " " + f2);
+	if (contains(possible, f1.toLowerCase()) && !(contains(used, f1.toLowerCase()))){
+		used[used.length] = f1.toLowerCase();
+		f1 = true;
+		n=n+1;
+		
+	}
+	else {
+		f1 = false;
+	}
+	
+	if (contains(possible, f2.toLowerCase()) && !(contains(used, f2.toLowerCase()))){
+		used[used.length] = f2.toLowerCase();
+		f2 = true;
+		n=n+1;
+	}
+	else {
+		f2 = false;
+	}
+	
+	if (contains(possible, f3.toLowerCase()) && !(contains(used, f3.toLowerCase()))){
+		used[used.length] = f3.toLowerCase();
+		f3 = true;
+		n=n+1;
+	}
+	else {
+		f3 = false;
+	}
+	
+	if (contains(possible, f4.toLowerCase()) && !(contains(used, f4.toLowerCase()))){
+		used[used.length] = f4.toLowerCase();
+		f4 = true;
+		n=n+1;
+	}
+	else {
+		f4 = false;
+	}
+	//alert("hi");
+	var p1tx = (n < 5) ? "You got something wrong :( " : "All correct!";
+	if (n < 5){
+		p1tx = p1tx.concat("<br> Force 1 was ", fr(f1));
+		p1tx = p1tx.concat("<br> Force 2 was ", fr(f2));
+		p1tx = p1tx.concat("<br> Force 3 was ", fr(f3));
+		p1tx = p1tx.concat("<br> Force 4 was ", fr(f4));
+	}
+	//alert("i ran");
+	document.getElementById("anq1").innerHTML = p1tx;
+	
+	
+	return false;
+	
+	
+
+	
+	
+}
+
+function ansQ2() {
+	var possible = ["airplane", "spaceship", "spacecraft", "glider", "hang glider", "bird", "rocket", "helicopter", "plane"];
+	
+	var p1tx = "The possible answers were as follows: " + possible + "<br> If any are missing, then I am sorry :(";
+	
+	//alert("i ran");
+	document.getElementById("anq2").innerHTML = p1tx;
+	
+}
+
+function ansQ3() {
+	
+	
+	var p1tx = "The answer is A) It expands.";
+	
+	//alert("i ran");
+	document.getElementById("anq3").innerHTML = p1tx;
+	
+}
+
+function validateQ2() {
+	var formy = document.forms["q2"];
+	
+	var possible = ["airplane", "spaceship", "spacecraft", "glider", "hang glider", "bird", "rocket", "helicopter", "plane"];
+	
+	var f1 = formy["q2a"].value;
+	
+	if (contains(possible, f1.toLowerCase())){
+		f1 = true;
+	}
+	else {
+		f1 = false;
+	}
+	
+	var p1tx = (f1 === true) ? "You got it right!" : "I dont think that can fly...";
+	
+	//alert("i ran");
+	document.getElementById("anq2").innerHTML = p1tx;
+	
+	return false;
+
+
+	
+}
+function validateQ3() {
+	var formy = document.forms["q3"];
+
+	
+	var f1 = formy["q3a"].value;
+	
+	if (f1.toLowerCase() == "a"){
+		f1 = true;
+	}
+	else {
+		f1 = false;
+	}
+	
+	var p1tx = (f1 === true) ? "You got it right!" : "Thats wrong :(";
+	
+	//alert("i ran");
+	document.getElementById("anq3").innerHTML = p1tx;
+	
+	return false;
+}
+
+</script>
+
+<p id="anq1"></p>
+
+
+<button type="button" onclick="ansQ1();">Spew out answers for this question</button>
+<form name="q1" onSubmit="return validateQ1()">
+Force 1: <input type="text" name="q1f1" required><br>
+Force 2: <input type="text" name="q1f2" required><br>
+Force 3: <input type="text" name="q1f3" required><br>
+Force 4: <input type="text" name="q1f4" required><br>
+<input type="submit" value="Check answers for question 1">
+</form>
+
+<h3>Question 2: Give an example of a device that can fly</h3>
+<p id="anq2"></p>
+<button type="button" onclick="ansQ2();">Spew out answers for this question</button>
+<form name="q2" onSubmit="return validateQ2()">
+Device: <input type="text" name="q2a">
+<input type="submit" value="Check answer for question 2">
+</form>
+
+<h3>Question 3: What happens to air when it is heated?</h3>
+<p id="anq3"></p>
+<button type="button" onclick="ansQ3();">Spew out answers for this question</button>
+<form name="q3" onSubmit="return validateQ3()">
+a) It contracts b) It expands c) It accelerates d) none of the above<br>
+Choice: <input type="text" name="q3a">
+<input type="submit" value="Check answer for question 3">
+</form>
+
+
+</body>
+</html>
